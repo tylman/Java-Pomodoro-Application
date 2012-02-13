@@ -15,7 +15,6 @@ import java.util.Timer;
  */
 public class Pomodoro_View extends javax.swing.JFrame {
 
-    pomodoro_time mypomodoro = new pomodoro_time();
     Timer timer = new Timer();
     long start;
     boolean showResume = true;
