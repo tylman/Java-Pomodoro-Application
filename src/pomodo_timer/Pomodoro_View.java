@@ -19,9 +19,11 @@ public class Pomodoro_View extends javax.swing.JFrame {
 
     
     
-    long startValue, resumeMinutes;
+    long startValue, resumeSeconds;
     boolean showResume = true;
     boolean resumeTimer = false;
+    String printString = "";
+    timeChecker checkTime = new timeChecker();
     
     public Pomodoro_View() {
         initComponents();
@@ -139,19 +141,21 @@ public class Pomodoro_View extends javax.swing.JFrame {
                                 if (resumeTimer == false)
                                 {
                                     System.out.println(startValue+"\n");
-                                    jLabel3.setText(Double.toString(get_time(startValue)));
+                                    printString = checkTime.formatTime((new Double(get_time(startValue))).longValue());
+                                    jLabel3.setText(printString);
                                 }
                                 else if (resumeTimer == true)
                                 {
                                     System.out.println(startValue+"\n");
-                                    resumeMinutes+=1.0;
-                                    jLabel3.setText(Double.toString(resumeMinutes));
+                                    resumeSeconds+=1.0;
+                                    printString = checkTime.formatTime((resumeSeconds));
+                                    jLabel3.setText(printString);
                                 }
                              }
                          };
     //Initiate timer with listener
     Timer t = new Timer(1000, timerFunction);
-    
+
     //Checks to see if the timer thread is running
     // if so, it resets the value of 'startValue'
     private void startResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startResetActionPerformed
@@ -192,6 +196,7 @@ public class Pomodoro_View extends javax.swing.JFrame {
         
     }//GEN-LAST:event_resumeButtonActionPerformed
 
+    
    public void set_timer() //assign current nanotime to long startvalue
    {
         startValue = System.nanoTime();
@@ -201,14 +206,11 @@ public class Pomodoro_View extends javax.swing.JFrame {
     public double get_time(long startValue)
     {
        long time_elapsed = System.nanoTime() - startValue;
-        
-       long minutes = TimeUnit.SECONDS.convert(time_elapsed, TimeUnit.NANOSECONDS);
-       //System.out.println("start "+startValue);
-       //System.out.println("time_elapsed "+time_elapsed);
-       //System.out.println("minutes "+minutes);
-        
-       resumeMinutes = minutes;
-       return minutes;
+       long seconds = TimeUnit.SECONDS.convert(time_elapsed, TimeUnit.NANOSECONDS);
+       
+       resumeSeconds = seconds;
+       
+       return seconds;
     }
    
     

@@ -28,6 +28,12 @@ public class pomodoro_counter {
         return pomodoro_count;
     }
     
+    private void check_for_pomodoro(long currentTime)
+   {
+       
+       
+   }
+    
       
 }
 
