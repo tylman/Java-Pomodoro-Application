@@ -19,7 +19,15 @@ public class timeChecker {
         
         if (seconds < 10)
         {
-            printString = Long.toString(minutes) +":0" + Long.toString(seconds);
+            if (minutes < 10)
+            {
+                printString = "0"+Long.toString(minutes) +":0" + Long.toString(seconds);
+            }
+            else
+            {
+                printString = Long.toString(minutes) +":0" + Long.toString(seconds);
+            }
+                
         }
         
         else 
@@ -29,5 +37,7 @@ public class timeChecker {
         
         return printString;
     }
+    
+   
     
 }
