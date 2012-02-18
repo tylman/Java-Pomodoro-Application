@@ -158,6 +158,7 @@ public class Pomodoro_View extends javax.swing.JFrame {
                                     timeLabel.setText(printString);
                                     pomodoroLabel.setText(Long.toString(pomodoroStats.pomodoroCount(resumeSeconds)));
                                 }
+                                
                              }
                          };
     //Initiate timer with listener
