@@ -4,6 +4,9 @@
  */
 package pomodo_timer;
 
+
+import java.util.concurrent.TimeUnit;
+
 /**
  *
  * @author Andrew
@@ -11,29 +14,27 @@ package pomodo_timer;
 public class pomodoro_counter {
     
     int pomodoro_count=0;
+   
     
-    public void increase_pomodoro() 
-    {
-        
-        pomodoro_count+=1;
-    }
     
+    //resets pomodor count if need be
     public void reset_pomodoro()
     {
         pomodoro_count=0;
     }
     
-    public int get_pomodoro()
-    {
-        return pomodoro_count;
-    }
-    
-    private void check_for_pomodoro(long currentTime)
-   {
-       
-       
-   }
-    
+    //Takes current time and calculates number of Pomodoro's in the alloted time
+     public long pomodoroCount(long currentTime)
+     {
+        long minutes = TimeUnit.MINUTES.convert(currentTime, TimeUnit.SECONDS);
+        long pomodoroCount = minutes/25;
+        
+        
+        return pomodoroCount;
+     }
+     
+
+ 
       
 }
 
