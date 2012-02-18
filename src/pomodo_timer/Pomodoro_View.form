@@ -27,15 +27,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" pref="147" max="32767" attributes="0"/>
+                          <Component id="timeElapsed_Label" alignment="0" max="32767" attributes="0"/>
+                          <Component id="pom_static_label" alignment="0" pref="147" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="pomodoroLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="timeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="183" max="32767" attributes="0"/>
+                      <EmptySpace pref="205" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLayeredPane2" min="-2" pref="367" max="-2" attributes="0"/>
@@ -50,13 +50,13 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="timeElapsed_Label" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="timeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pom_static_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pomodoroLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLayeredPane2" min="-2" pref="100" max="-2" attributes="0"/>
@@ -66,24 +66,24 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="timeElapsed_Label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Time Elapsed:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="pom_static_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pomodoro #:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="timeLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="HH:MM:SS"/>
+        <Property name="text" type="java.lang.String" value="00:00"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="pomodoroLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JLayeredPane" name="jLayeredPane2">

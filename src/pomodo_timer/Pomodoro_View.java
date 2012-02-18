@@ -6,6 +6,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
+import java.util.Stack;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -24,6 +25,8 @@ public class Pomodoro_View extends javax.swing.JFrame {
     boolean resumeTimer = false;
     String printString = "";
     timeChecker checkTime = new timeChecker();
+    pomodoro_counter pomodoroStats = new pomodoro_counter();
+    
     
     public Pomodoro_View() {
         initComponents();
@@ -40,10 +43,10 @@ public class Pomodoro_View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        timeElapsed_Label = new javax.swing.JLabel();
+        pom_static_label = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        pomodoroLabel = new javax.swing.JLabel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         startReset = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -51,13 +54,13 @@ public class Pomodoro_View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Time Elapsed:");
+        timeElapsed_Label.setText("Time Elapsed:");
 
-        jLabel2.setText("Pomodoro #:");
+        pom_static_label.setText("Pomodoro #:");
 
-        jLabel3.setText("HH:MM:SS");
+        timeLabel.setText("00:00");
 
-        jLabel4.setText("jLabel4");
+        pomodoroLabel.setText("0");
 
         startReset.setText("Start");
         startReset.setToolTipText("");
@@ -97,13 +100,13 @@ public class Pomodoro_View extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                            .addComponent(timeElapsed_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pom_static_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addContainerGap(183, Short.MAX_VALUE))
+                            .addComponent(pomodoroLabel)
+                            .addComponent(timeLabel))
+                        .addContainerGap(205, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -113,12 +116,12 @@ public class Pomodoro_View extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(timeElapsed_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timeLabel))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(pom_static_label)
+                    .addComponent(pomodoroLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -141,15 +144,19 @@ public class Pomodoro_View extends javax.swing.JFrame {
                                 if (resumeTimer == false)
                                 {
                                     System.out.println(startValue+"\n");
-                                    printString = checkTime.formatTime((new Double(get_time(startValue))).longValue());
-                                    jLabel3.setText(printString);
+                                    long current_time = get_time(startValue);
+                                    printString = checkTime.formatTime(current_time);
+                                    timeLabel.setText(printString);
+                                    pomodoroLabel.setText(Long.toString(pomodoroStats.pomodoroCount(current_time)));
                                 }
+                                
                                 else if (resumeTimer == true)
                                 {
                                     System.out.println(startValue+"\n");
                                     resumeSeconds+=1.0;
                                     printString = checkTime.formatTime((resumeSeconds));
-                                    jLabel3.setText(printString);
+                                    timeLabel.setText(printString);
+                                    pomodoroLabel.setText(Long.toString(pomodoroStats.pomodoroCount(resumeSeconds)));
                                 }
                              }
                          };
@@ -203,7 +210,7 @@ public class Pomodoro_View extends javax.swing.JFrame {
    }
     
    //Retrieves current time and computes seconds using System nanotime.
-    public double get_time(long startValue)
+    public long get_time(long startValue)
     {
        long time_elapsed = System.nanoTime() - startValue;
        long seconds = TimeUnit.SECONDS.convert(time_elapsed, TimeUnit.NANOSECONDS);
@@ -257,12 +264,12 @@ public class Pomodoro_View extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JLabel pom_static_label;
+    private javax.swing.JLabel pomodoroLabel;
     private javax.swing.JButton resumeButton;
     private javax.swing.JButton startReset;
+    private javax.swing.JLabel timeElapsed_Label;
+    private javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 }
